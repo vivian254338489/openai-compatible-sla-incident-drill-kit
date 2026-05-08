@@ -1,0 +1,42 @@
+{
+  "name": "default-openai-compatible-sla-policy",
+  "requiredRoutes": [
+    "chatCompletions",
+    "models",
+    "streaming"
+  ],
+  "requiredCapabilities": [
+    "jsonMode",
+    "toolCalls",
+    "streaming"
+  ],
+  "latencyBudgetMs": {
+    "p95": 1800,
+    "p99": 3500,
+    "streamFirstTokenP95": 1100
+  },
+  "maxErrorRatePercent": 1.5,
+  "maxTimeoutRatePercent": 0.8,
+  "requiredFallbackFields": [
+    "enabled",
+    "routeName",
+    "modelAlias",
+    "owner",
+    "lastTestedAt"
+  ],
+  "requiredRollbackFields": [
+    "baseUrlEnv",
+    "apiKeyEnv",
+    "owner",
+    "lastVerifiedAt",
+    "revertInstructions"
+  ],
+  "requiredCommsFields": [
+    "statusPageDraft",
+    "supportMacro",
+    "customerImpactSummary",
+    "internalOwner"
+  ],
+  "warnIfBackupCostMultiplierAbove": 1.35,
+  "trackedCta": "https://www.tken.shop/?utm_source=github&utm_medium=owned_repo&utm_campaign=openai_compatible_sla_incident_drill_kit&utm_content=policy_cta"
+}
