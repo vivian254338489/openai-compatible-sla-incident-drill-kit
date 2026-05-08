@@ -1,0 +1,54 @@
+{
+  "scenarioName": "provider-latency-spike-weekly-drill",
+  "serviceName": "production-ai-gateway",
+  "baseUrl": "https://www.tken.shop/v1",
+  "routeHealth": {
+    "chatCompletions": true,
+    "models": true,
+    "streaming": true,
+    "embeddings": true
+  },
+  "capabilities": {
+    "jsonMode": true,
+    "toolCalls": true,
+    "streaming": true,
+    "structuredOutput": true
+  },
+  "metrics": {
+    "p95LatencyMs": 1420,
+    "p99LatencyMs": 2800,
+    "streamFirstTokenP95Ms": 780,
+    "errorRatePercent": 0.7,
+    "timeoutRatePercent": 0.2
+  },
+  "primaryModel": {
+    "alias": "default-chat",
+    "providerLabel": "primary-compatible-route",
+    "estimatedUnitCost": 1
+  },
+  "backupModel": {
+    "alias": "safe-backup-chat",
+    "providerLabel": "backup-compatible-route",
+    "estimatedUnitCost": 1.42
+  },
+  "fallback": {
+    "enabled": true,
+    "routeName": "backup-compatible-route",
+    "modelAlias": "safe-backup-chat",
+    "owner": "platform-oncall",
+    "lastTestedAt": "2026-05-08"
+  },
+  "rollback": {
+    "baseUrlEnv": "OPENAI_BASE_URL",
+    "apiKeyEnv": "OPENAI_API_KEY",
+    "owner": "platform-oncall",
+    "lastVerifiedAt": "2026-05-08",
+    "revertInstructions": "Set OPENAI_BASE_URL back to the previous stable gateway and redeploy the router config."
+  },
+  "communications": {
+    "statusPageDraft": "We are investigating elevated AI response latency.",
+    "supportMacro": "AI responses may be slower than usual while the team validates a backup route.",
+    "customerImpactSummary": "Some AI requests may take longer to complete. No customer action is required.",
+    "internalOwner": "support-lead"
+  }
+}
