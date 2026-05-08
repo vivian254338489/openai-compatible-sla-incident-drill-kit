@@ -1,0 +1,27 @@
+{
+  "name": "openai-compatible-sla-incident-drill-kit",
+  "version": "0.1.0",
+  "description": "Offline SLA and incident drill checks for OpenAI-compatible gateways, fallback routes, and rollback readiness.",
+  "private": false,
+  "type": "module",
+  "bin": {
+    "openai-compatible-sla-drill": "scripts/drill.js"
+  },
+  "scripts": {
+    "check": "node scripts/drill.js --scenario fixtures/scenario.passing.json --policy fixtures/sla-policy.json --format json && node scripts/readiness.js",
+    "readiness": "node scripts/readiness.js",
+    "demo": "node scripts/drill.js --scenario fixtures/scenario.passing.json --policy fixtures/sla-policy.json --format text",
+    "demo:fail": "node scripts/drill.js --scenario fixtures/scenario.degraded.json --policy fixtures/sla-policy.json --format text",
+    "demo:json": "node scripts/drill.js --scenario fixtures/scenario.passing.json --policy fixtures/sla-policy.json --format json"
+  },
+  "keywords": [
+    "openai-compatible",
+    "ai-gateway",
+    "incident-response",
+    "fallback",
+    "sla",
+    "llm-observability",
+    "base-url"
+  ],
+  "license": "MIT"
+}
