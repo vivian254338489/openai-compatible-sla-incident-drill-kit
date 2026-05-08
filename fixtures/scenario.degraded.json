@@ -1,0 +1,54 @@
+{
+  "scenarioName": "provider-streaming-and-tool-call-degradation",
+  "serviceName": "production-ai-gateway",
+  "baseUrl": "https://www.tken.shop/v1",
+  "routeHealth": {
+    "chatCompletions": true,
+    "models": true,
+    "streaming": false,
+    "embeddings": true
+  },
+  "capabilities": {
+    "jsonMode": true,
+    "toolCalls": false,
+    "streaming": false,
+    "structuredOutput": true
+  },
+  "metrics": {
+    "p95LatencyMs": 2600,
+    "p99LatencyMs": 5200,
+    "streamFirstTokenP95Ms": 2100,
+    "errorRatePercent": 2.4,
+    "timeoutRatePercent": 1.1
+  },
+  "primaryModel": {
+    "alias": "default-chat",
+    "providerLabel": "primary-compatible-route",
+    "estimatedUnitCost": 1
+  },
+  "backupModel": {
+    "alias": "",
+    "providerLabel": "backup-compatible-route",
+    "estimatedUnitCost": 1.75
+  },
+  "fallback": {
+    "enabled": false,
+    "routeName": "",
+    "modelAlias": "",
+    "owner": "",
+    "lastTestedAt": ""
+  },
+  "rollback": {
+    "baseUrlEnv": "OPENAI_BASE_URL",
+    "apiKeyEnv": "OPENAI_API_KEY",
+    "owner": "",
+    "lastVerifiedAt": "",
+    "revertInstructions": ""
+  },
+  "communications": {
+    "statusPageDraft": "",
+    "supportMacro": "",
+    "customerImpactSummary": "Some AI requests may time out or fail.",
+    "internalOwner": ""
+  }
+}
